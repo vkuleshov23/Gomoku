@@ -150,21 +150,22 @@ public class Gomoku implements Serializable{
 	}
 	@Override
 	public String toString(){
+		char c = '|';
 		StringBuilder str = new StringBuilder();
 		str.append("     1   2   3   4   5   6   7   8   9   10  11  12  13  14  15\n");
-		str.append("   _____________________________________________________________\n");
+		str.append("   -------------------------------------------------------------\n");
 		for(int i = 0; i < size; i++){
 			if(i < 9){
-				str.append(i+1 + "  | ");
+				str.append(i+1 + "  " + c + " ");
 			} else {
-				str.append(i+1 + " | ");
+				str.append(i+1 + " " + c + " ");
 
 			}
 			for (int j = 0; j < size; j++) {
 				str.append(this.board[i][j]);
-				str.append(" | ");
+				str.append(" " + c + " ");
 			}
-			str.append("\n   _____________________________________________________________\n");
+			str.append("\n   -------------------------------------------------------------\n");
 		}
 		return str.toString();
 	}
