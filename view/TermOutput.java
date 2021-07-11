@@ -21,9 +21,10 @@ public class TermOutput{
 			int x = scan.nextInt(); 
 			int y = scan.nextInt();
 			if(game.move(x-1, y-1) == true){
-				System.out.println(game.getWinner() + " is winner");	
 				System.out.println(game);
+				System.out.println(game.getWinner() + " is winner");	
 				game.newGame();
+				System.out.println(game);
 			} else 
 				System.out.println(game);
 		}
