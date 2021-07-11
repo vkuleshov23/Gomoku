@@ -1,0 +1,6 @@
+ai/*.class
+history/*.class
+model/*.class
+saves/*.class
+tests/*.class
+view/*.class
