@@ -1,4 +1,4 @@
-package gomoku.model;
+package model;
 import java.io.Serializable;
 
 public class Gomoku implements Serializable{
@@ -9,7 +9,12 @@ public class Gomoku implements Serializable{
 
 	public Gomoku(){
 		this.board = new char[size][size];
-		this.player = 1;
+		for(int i = 0; i < size; i++){
+			for(int j = 0; j < size; j++){
+				this.board[i][j] = ' ';
+			}
+		}
+		this.player = true;
 	}
 	public Gomoku(char[][] board, boolean player, boolean flagAboutWin){
 		this.player = player;
@@ -22,22 +27,34 @@ public class Gomoku implements Serializable{
 	public boolean move(int x, int y){
 		if(!this.checkMove(x, y))
 			return false;
-		player ? this.board[x][y] = "X" : this.board[x][y] = "O";
-		if(this.checkWin)
+
+		
+		if(player == true)
+			this.board[x][y] = 'X';
+		else
+			this.board[x][y] = 'O';
+		
+
+		if(this.checkWin())
 			return true;
 		this.changePlayer();
 		return false;
 	}
 	private boolean checkMove(int x, int y){
-		if(x < 0 && x > size || y < 0 && y > size)
+		if(x < 0 || x > size && y < 0 || y > size)
 			return false;
-		if(this.board[x][y] = " ")
+		if(this.board[x][y] != ' ')
 			return false;
 		return true;
 	}
 	private boolean checkWin(){
 		char c;
-		player ? c = "X" : c = "O";
+		
+		if(player == true)
+			c = 'X';
+		else
+			c = 'O';
+
 		int counter = 0;
 
 		for(int i = 0; i < size; i++){
@@ -67,7 +84,7 @@ public class Gomoku implements Serializable{
 		for(int length = this.countForWin-1; length < size; length++){
 			for(int j = 0, i = length; j <= length; j++, i--){
 				if(c == this.board[i][j])
-					counter++
+					counter++;
 				else 
 					counter = 0;
 				if(counter == this.countForWin)
@@ -91,7 +108,7 @@ public class Gomoku implements Serializable{
 		for (int length = size - 1, start = 1; length > this.countForWin-1; length--, start++) {
 			for(int j = start, i = size - 1, k = 0; k < length; j++, k++){
 				if(c == this.board[i-k][j])
-					counter++
+					counter++;
 				else 
 					counter = 0;
 				if(counter == this.countForWin)
@@ -102,7 +119,7 @@ public class Gomoku implements Serializable{
 		for (int length = size - 1, start = 1; length > this.countForWin-1; length--, start++) {
 			for(int j = start, i = 0, k = 0; k < length; j++, k++){
 				if(c == this.board[i+k][j])
-					counter++
+					counter++;
 				else 
 					counter = 0;
 				if(counter == this.countForWin)
@@ -113,18 +130,42 @@ public class Gomoku implements Serializable{
 
 		return false;
 	}
-	public getWinner(){
-		return this.player;
+	public String getWinner(){
+		if(this.player == true) return "X Player";
+		else return "O PLayer";
+	}
+	public char getElement(int x, int y){
+		return this.board[x][y];
 	}
 	private void changePlayer(){
-		this.player != this.player;
+		this.player = !this.player;
 	}
 	public void newGame(){
-		this.player = 1;
+		this.player = true;
 		for(int i = 0; i < size; i++){
 			for (int j = 0; j < size; j++) {
-				this.board[i][j] = " ";
+				this.board[i][j] = ' ';
 			}
 		}
+	}
+	@Override
+	public String toString(){
+		StringBuilder str = new StringBuilder();
+		str.append("     1   2   3   4   5   6   7   8   9   10  11  12  13  14  15\n");
+		str.append("   _____________________________________________________________\n");
+		for(int i = 0; i < size; i++){
+			if(i < 9){
+				str.append(i+1 + "  | ");
+			} else {
+				str.append(i+1 + " | ");
+
+			}
+			for (int j = 0; j < size; j++) {
+				str.append(this.board[i][j]);
+				str.append(" | ");
+			}
+			str.append("\n   _____________________________________________________________\n");
+		}
+		return str.toString();
 	}
 }
