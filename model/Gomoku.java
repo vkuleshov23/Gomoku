@@ -34,7 +34,7 @@ public class Gomoku implements Serializable{
 		return true;
 	}
 	private boolean checkWin(){
-		
+		return false;
 	}
 	private void changePlayer(){
 		this.player != this.player;
