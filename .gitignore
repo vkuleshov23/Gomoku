@@ -5,3 +5,4 @@ saves/*.class
 tests/*.class
 view/*.class
 *.class
+a.out
