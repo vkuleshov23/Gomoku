@@ -131,9 +131,10 @@ public class Gomoku implements Serializable{
 		return false;
 	}
 	public String getWinner(){
-		if(this.player == true) return "X Player";
-		else return "O PLayer";
+		if(this.player == true) return "Player X";
+		else return "PLayer O";
 	}
+	public int getSize(){ return this.size; }
 	public char getElement(int x, int y){
 		return this.board[x][y];
 	}
@@ -147,26 +148,5 @@ public class Gomoku implements Serializable{
 				this.board[i][j] = ' ';
 			}
 		}
-	}
-	@Override
-	public String toString(){
-		char c = '|';
-		StringBuilder str = new StringBuilder();
-		str.append("     1   2   3   4   5   6   7   8   9   10  11  12  13  14  15\n");
-		str.append("   -------------------------------------------------------------\n");
-		for(int i = 0; i < size; i++){
-			if(i < 9){
-				str.append(i+1 + "  " + c + " ");
-			} else {
-				str.append(i+1 + " " + c + " ");
-
-			}
-			for (int j = 0; j < size; j++) {
-				str.append(this.board[i][j]);
-				str.append(" " + c + " ");
-			}
-			str.append("\n   -------------------------------------------------------------\n");
-		}
-		return str.toString();
 	}
 }
