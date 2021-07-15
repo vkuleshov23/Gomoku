@@ -86,7 +86,8 @@ public class BoardPanel extends JPanel {
 				g.setColor(Color.blue);
 			} else if(c == ' '){
 				g.setColor(Color.white);
-				return '•';
+				// return '•';
+				return '¤';
 			}
 			return c;
 		}
