@@ -10,7 +10,7 @@ public class BoardView extends JFrame{
 	private static final int panelButtonNum = 4;
 
 	BoardView(){
-		super("Board");
+		super("2007");
 		this.creating();
 	}
 

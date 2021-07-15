@@ -54,8 +54,7 @@ public class BoardPanel extends JPanel {
 						y -= offset-offsetOfFont;
 						int i = x / rate;
 						int j = y / rate;
-						System.out.println("x = " + x + " y = " + y); 
-						System.out.println("i = " + i + " j = " + j);
+						System.out.println("x = " + x + " y = " + y + " i = " + i + " j = " + j); 
 						if(!game.move(i, j)){
 							repaint();
 						} else {
