@@ -1,22 +1,25 @@
 package view;
 import model.*;
+import history.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedList;
 
 public class BoardPanel extends JPanel {
 		private Gomoku game;
 		private BoardView bv;
 		private static final int rate = 53;
 		private static final int offset = 90;
+		private static final int offsetOfFont = 20;
 		private boolean winFlag = false;
 
 		BoardPanel(Gomoku game, BoardView bv){
 			this.game = game;
 			this.bv = bv;
 			this.setBackground(Color.black);
-			GameMouseListener gml = new GameMouseListener();
+			GameMouseListener gml = new GameMouseListener(bv);
 			this.addMouseListener(gml);
 
 		}
@@ -24,15 +27,21 @@ public class BoardPanel extends JPanel {
 			this.game = new Gomoku(); 
 			this.bv = bv;
 			this.setBackground(Color.black);
-			GameMouseListener gml = new GameMouseListener();
+			GameMouseListener gml = new GameMouseListener(bv);
 			this.addMouseListener(gml);
 		}
-
-		class GameMouseListener extends MouseAdapter {
+		Gomoku getGame(){
+			return game;
+		}
+		public class GameMouseListener extends MouseAdapter {
+			BoardView bv;
+			GameMouseListener(BoardView bv){
+				this.bv = bv;
+			}
 			public void mouseClicked(MouseEvent e){
 				if(winFlag == true){
 					bv.dispose();
-					new WinMenu(game.getWinner(), game);
+					new BoardView();
 					return;
 				}
 
@@ -40,9 +49,9 @@ public class BoardPanel extends JPanel {
 				int y = e.getY();
 
 				if(x > offset){
-					x -= offset;
+					x -= offset+offsetOfFont;
 					if(y > offset){
-						y -= offset;
+						y -= offset-offsetOfFont;
 						int i = x / rate;
 						int j = y / rate;
 						System.out.println("x = " + x + " y = " + y); 
@@ -52,6 +61,7 @@ public class BoardPanel extends JPanel {
 						} else {
 							repaint();
 							winFlag = true;
+							new WinMenu(game.getWinner(), game, bv);
 						}
 					}
 				}
@@ -67,7 +77,6 @@ public class BoardPanel extends JPanel {
 					g.drawString("" + changeColor(g, i, j), offset + rate/2 + i * rate, offset + rate/2 + j * rate);
 				}
 			}
-
 		}
 		private char changeColor(Graphics g ,int i,int j){
 			char c = game.getElement(i, j);
@@ -77,7 +86,7 @@ public class BoardPanel extends JPanel {
 				g.setColor(Color.blue);
 			} else if(c == ' '){
 				g.setColor(Color.white);
-				return '.';
+				return '•';
 			}
 			return c;
 		}

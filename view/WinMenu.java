@@ -8,10 +8,12 @@ import java.awt.event.*;
 public class WinMenu extends JFrame{
 	private static final int size = 2;
 	private Gomoku game;
-	public WinMenu(String winner, Gomoku game){
+	private BoardView bv;
+	public WinMenu(String winner, Gomoku game, BoardView bv){
 		super("Game End");
 		this.creating(winner);
 		this.game = game;
+		this.bv = bv;
 	}
 	private void creating(String winner){
 
@@ -37,23 +39,25 @@ public class WinMenu extends JFrame{
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setVisible(true);
 	}
-	public static class QuitActListener implements ActionListener{
+	public class QuitActListener implements ActionListener{
 		JFrame wm;
 		QuitActListener(JFrame wm){ this.wm = wm; }
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
+			bv.dispose();
 			new MainMenu("Gomoku");
 		}
 	}
 
-	public static class RematchActListener implements ActionListener{
+	public class RematchActListener implements ActionListener{
 		JFrame wm;
 		Gomoku game;
 		RematchActListener(JFrame wm, Gomoku game){ this.wm = wm; this.game = game;}
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
+			bv.dispose();
 			new BoardView();
 		}
 	}

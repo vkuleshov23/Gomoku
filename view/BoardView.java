@@ -1,4 +1,5 @@
 package view;
+import history.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +29,13 @@ public class BoardView extends JFrame{
 			panelButton[i].setBounds(x, 10, step-4, 35);
 			c.add(panelButton[i], BorderLayout.NORTH);
 		}
+		panelButton[0].addActionListener(new UndoActListener(bp));
+		panelButton[2].addActionListener(new HistoryActListener(bp));
 		panelButton[3].addActionListener(new QuitActListener(this));
 
 		
         c.add(bp, BorderLayout.CENTER);
 
-		// this.add(bp);
 		this.setSize(1000, 1000);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,6 +49,25 @@ public class BoardView extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
 			new MainMenu("Gomoku");
+		}
+	}
+	public static class HistoryActListener implements ActionListener{
+		BoardPanel forTakeHist;
+		HistoryActListener(BoardPanel e){ forTakeHist = e;}
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.println("History:");
+			System.out.println(this.forTakeHist.getGame().getHistory());
+		}
+	}
+	public static class UndoActListener implements ActionListener{
+		BoardPanel forUndoMove;
+		UndoActListener(BoardPanel e){ forUndoMove = e;}
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.print("Undo: ");
+			System.out.println(this.forUndoMove.getGame().undo());
+			this.forUndoMove.repaint();
 		}
 	}
 }

@@ -1,13 +1,18 @@
 package model;
+import history.*;
+
 import java.io.Serializable;
+import java.util.LinkedList;
 
 public class Gomoku implements Serializable{
 	static final int size = 15;
 	static final int countForWin = 5;
 	private char[][] board;
 	private boolean player;
+	private History history;
 
 	public Gomoku(){
+		history = new History();
 		this.board = new char[size][size];
 		for(int i = 0; i < size; i++){
 			for(int j = 0; j < size; j++){
@@ -16,7 +21,8 @@ public class Gomoku implements Serializable{
 		}
 		this.player = true;
 	}
-	public Gomoku(char[][] board, boolean player, boolean flagAboutWin){
+	public Gomoku(char[][] board, boolean player, boolean flagAboutWin, History history){
+		this.history = history;
 		this.player = player;
 		for(int i = 0; i < size; i++){
 			for (int j = 0; j < size; j++) {
@@ -29,11 +35,14 @@ public class Gomoku implements Serializable{
 			return false;
 
 		
-		if(player == true)
+		if(player == true){
 			this.board[x][y] = 'X';
-		else
+			history.addMove(x, y, 'X');
+		}
+		else{
 			this.board[x][y] = 'O';
-		
+			history.addMove(x, y, 'O');
+		}
 
 		if(this.checkWin())
 			return true;
@@ -46,6 +55,21 @@ public class Gomoku implements Serializable{
 		if(this.board[x][y] != ' ')
 			return false;
 		return true;
+	}
+	public Element undo(){
+		if(history.getSize() != 0){
+			Element el = history.getLast();
+			this.board[el.getX()][el.getY()] = ' ';
+			char c = el.getPlayer();
+			if(c == 'X'){
+				this.player = true;
+			} else {
+				this.player = false;
+			}
+			history.deleteMove();
+			return el;
+		}
+		return new Element(-1, -1, '-');
 	}
 	private boolean checkWin(){
 		char c;
@@ -129,6 +153,9 @@ public class Gomoku implements Serializable{
 		}
 
 		return false;
+	}
+	public LinkedList<Element> getHistory(){
+		return history.getHistory();
 	}
 	public String getWinner(){
 		if(this.player == true) return "Player X";
