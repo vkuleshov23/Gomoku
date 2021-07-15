@@ -6,20 +6,23 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BoardPanel extends JPanel {
-		private Gomoku game; 
+		private Gomoku game;
+		private BoardView bv;
 		private static final int rate = 53;
 		private static final int offset = 90;
 		private boolean winFlag = false;
 
-		BoardPanel(Gomoku game){
+		BoardPanel(Gomoku game, BoardView bv){
 			this.game = game;
+			this.bv = bv;
 			this.setBackground(Color.black);
 			GameMouseListener gml = new GameMouseListener();
 			this.addMouseListener(gml);
 
 		}
-		BoardPanel(){
+		BoardPanel(BoardView bv){
 			this.game = new Gomoku(); 
+			this.bv = bv;
 			this.setBackground(Color.black);
 			GameMouseListener gml = new GameMouseListener();
 			this.addMouseListener(gml);
@@ -28,6 +31,8 @@ public class BoardPanel extends JPanel {
 		class GameMouseListener extends MouseAdapter {
 			public void mouseClicked(MouseEvent e){
 				if(winFlag == true){
+					bv.dispose();
+					new WinMenu(game.getWinner(), game);
 					return;
 				}
 
@@ -47,7 +52,6 @@ public class BoardPanel extends JPanel {
 						} else {
 							repaint();
 							winFlag = true;
-							new WinMenu(game.getWinner());
 						}
 					}
 				}

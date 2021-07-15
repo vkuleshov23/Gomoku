@@ -18,7 +18,7 @@ public class ModeChoose extends JFrame {
 		mchButton[1] = new JButton("Two Players");
 		mchButton[2] = new JButton("Back");
 
-		mchButton[0].addActionListener(new SinglePlayerActListener(this));
+		mchButton[1].addActionListener(new TwoPlayerActListener(this));
 		mchButton[2].addActionListener(new BackActListener(this));
 
 		for(int i = 0, j = 100, step = 150; i < size; i++, j += step ){
@@ -43,9 +43,9 @@ public class ModeChoose extends JFrame {
 		}
 	}
 
-	public static class SinglePlayerActListener implements ActionListener{
+	public static class TwoPlayerActListener implements ActionListener{
 		JFrame forClosing;
-		SinglePlayerActListener(JFrame e){ forClosing = e;}
+		TwoPlayerActListener(JFrame e){ forClosing = e;}
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();

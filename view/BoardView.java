@@ -15,7 +15,7 @@ public class BoardView extends JFrame{
 
 	public void creating(){
 	
-		BoardPanel bp = new BoardPanel();
+		BoardPanel bp = new BoardPanel(this);
         Container c = getContentPane();
         bp.setBounds(0, 50, 1000, 950);
 
