@@ -3,7 +3,8 @@
 cd /home/vadim/Labs/game/gomoku
 
 
-files="./model/*.java ./view/*.java ./ai/*.java ./history/*.java ./tests/*.java ./saves/*.java"
+# files="./model/*.java ./view/*.java ./ai/*.java ./history/*.java ./tests/*.java ./saves/*.java"
+files="./model/*.java ./view/*.java ./history/*.java"
 
 compile="javac $files"
 

@@ -81,11 +81,11 @@ public class BoardPanel extends JPanel {
 		private char changeColor(Graphics g ,int i,int j){
 			char c = game.getElement(i, j);
 			if(c == 'X'){
-				g.setColor(Color.red);
+				g.setColor(new Color(101, 45, 87));
 			} else if(c == 'O'){
-				g.setColor(Color.blue);
+				g.setColor(new Color(114, 93, 102));
 			} else if(c == ' '){
-				g.setColor(Color.white);
+				g.setColor(new Color(56, 34, 46));
 				// return '•';
 				return '¤';
 			}

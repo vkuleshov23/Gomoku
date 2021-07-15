@@ -21,7 +21,7 @@ public class Gomoku implements Serializable{
 		}
 		this.player = true;
 	}
-	public Gomoku(char[][] board, boolean player, boolean flagAboutWin, History history){
+	public Gomoku(char[][] board, boolean player, History history){
 		this.history = history;
 		this.player = player;
 		for(int i = 0; i < size; i++){
