@@ -138,6 +138,9 @@ public class Gomoku implements Serializable{
 	public char getElement(int x, int y){
 		return this.board[x][y];
 	}
+	public boolean getPlayer(){
+		return this.player;
+	}
 	private void changePlayer(){
 		this.player = !this.player;
 	}

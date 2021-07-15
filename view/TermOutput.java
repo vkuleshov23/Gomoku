@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class TermOutput{
 	public static class View{
-		Gomoku game;
-		Scanner scan;
+		private Gomoku game;
+		private Scanner scan;
 		View(){
 			scan = new Scanner(System.in);
 			game = new Gomoku();
