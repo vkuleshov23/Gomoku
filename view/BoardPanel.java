@@ -68,11 +68,20 @@ public class BoardPanel extends JPanel {
 				}
 			}
 		}
-		Font big = new Font("Courier New", 1, 50);
+		// Font big = new Font("Yrsa", 1, 50);
+		// Font big = new Font("Utopia", 1, 50);
+		Font big = new Font("Ubuntu", 1, 50);
+		// Font big = new Font("Nakula", 1, 50);
 		public void paintComponent(Graphics g){
 			super.paintComponent(g);
-			g.setColor(Color.black);
+			g.setColor(new Color(101, 45, 87));
 			g.setFont(big);
+			char c;
+			if(game.getPlayer() == true)
+				c = 'X';
+			else
+				c = 'O';
+			g.drawString("Player: " + c, 70, 70);
 			for(int i = 0; i < game.getSize(); i++){
 				for(int j = 0; j < game.getSize(); j++){
 					g.drawString("" + changeColor(g, i, j), offset + rate/2 + i * rate, offset + rate/2 + j * rate);
