@@ -9,8 +9,10 @@ import java.io.ObjectInputStream;
 import java.lang.ClassNotFoundException;
 
 public class LoadGame {
-	private static final String filename = "/home/vadim/Labs/game/gomoku/saves/game_saves.ser";
-	public static final Gomoku load() throws IOException, ClassNotFoundException{
+	private static final String way = "/home/vadim/Labs/game/gomoku/saves/";
+	private static final String extension = ".ser";
+	public static final Gomoku load(String name) throws IOException, ClassNotFoundException{
+		String filename = way + name + extension;
 		FileInputStream gameSaves = new FileInputStream(filename);
 		ObjectInputStream ois = new ObjectInputStream(gameSaves);
 		Gomoku game = (Gomoku) ois.readObject();

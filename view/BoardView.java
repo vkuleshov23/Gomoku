@@ -84,14 +84,9 @@ public class BoardView extends JFrame{
 		SaveActListener(BoardPanel e){ forSaveGame = e;}
 		@Override
 		public void actionPerformed(ActionEvent e){
-			System.out.println("Saving game...");
-			try{
-				GameSave.save(this.forSaveGame.getGame());
-				System.out.println("Done!");
-			} catch(IOException err){
-				System.out.println("Some problem with encodind or writing...");
-				System.out.println(err.getMessage());
-			}
+			System.out.println("Open Save Menu");
+			new SaveMenu("Save File Menu", forSaveGame);
+			System.out.println("Done!");
 		}
 	}
 }

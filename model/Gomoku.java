@@ -31,23 +31,23 @@ public class Gomoku implements Serializable{
 		}
 	}
 	public boolean move(int x, int y){
-		if(!this.checkMove(x, y))
+		if(!this.checkMove(x, y))	
 			return false;
-
-		
-		if(player == true){
-			this.board[x][y] = 'X';
-			history.addMove(x, y, 'X');
-		}
-		else{
-			this.board[x][y] = 'O';
-			history.addMove(x, y, 'O');
-		}
-
+		history.addMove(x, y, this.changeBoard(x, y, player));
 		if(this.checkWin())
 			return true;
 		this.changePlayer();
 		return false;
+	}
+	private char changeBoard(int x, int y, boolean player){
+		if(player == true){
+			this.board[x][y] = 'X';
+			return 'X';
+		}
+		else{
+			this.board[x][y] = 'O';
+			return 'O';
+		}
 	}
 	private boolean checkMove(int x, int y){
 		if(x < 0 || x > size && y < 0 || y > size)

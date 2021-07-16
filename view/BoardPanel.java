@@ -40,9 +40,9 @@ public class BoardPanel extends JPanel {
 			}
 			public void mouseClicked(MouseEvent e){
 				if(winFlag == true){
-					bv.dispose();
-					System.out.println("New Game");
-					new BoardView("2007");
+					// bv.dispose();
+					// System.out.println("New Game");
+					// new BoardView("2007");
 					return;
 				}
 
@@ -61,7 +61,7 @@ public class BoardPanel extends JPanel {
 						} else {
 							repaint();
 							winFlag = true;
-							System.out.println(game.getWinner() + " is winner, go to Win Menu");
+							System.out.println(game.getWinner() + " is winner, open Win Menu");
 							new WinMenu("End Game", game.getWinner(), game, bv);
 						}
 					}
