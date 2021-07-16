@@ -1,6 +1,8 @@
 package history;
 
-public class Element {
+import java.io.Serializable;
+
+public class Element implements Serializable{
 	private int x;
 	private int y;
 	private char player;
@@ -12,7 +14,7 @@ public class Element {
 	}
 	@Override
 	public final String toString(){
-		return ("x-y, player: " + x + " -- " + y + ", " + player); 
+		return ("" + x + " -- " + y + ", " + player); 
 	}
 	public int getX(){
 		return this.x;

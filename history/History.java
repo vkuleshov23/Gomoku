@@ -1,8 +1,10 @@
 package history;
 
+import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Iterator;
 
-public class History{
+public class History implements Serializable{
 
 	private LinkedList<Element> hist;
 	public History(){
@@ -32,20 +34,23 @@ public class History{
 	public int getSize(){
 		return hist.size();
 	}
-	public void saveHistory(){
-
-	}
-	public LinkedList<Element> getHistory(){
+	public LinkedList<Element> getList(){
 		return hist;
 	}
 	@Override
 	public final String toString(){
 		StringBuilder str = new StringBuilder();
-		for (Element el : hist) {
+		int i = 0;
+		Iterator<Element> iter = this.hist.iterator();
+		str.append("History{\n");
+		while(iter.hasNext()) {
+			Element el = iter.next();
+			i++;
+			str.append("" + i + ":\t");
 			str.append(el);
-			str.append("\n");
+			str.append(",\n");
 		}
-		str.deleteCharAt(2);
+		str.append("}\n");
 		return str.toString();
 	}
 }

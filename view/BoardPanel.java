@@ -41,26 +41,28 @@ public class BoardPanel extends JPanel {
 			public void mouseClicked(MouseEvent e){
 				if(winFlag == true){
 					bv.dispose();
-					new BoardView();
+					System.out.println("New Game");
+					new BoardView("2007");
 					return;
 				}
 
 				int x = e.getX();
 				int y = e.getY();
 
-				if(x > offset){
+				if(x > offset && x < offset + rate * 15){
 					x -= offset+offsetOfFont;
-					if(y > offset){
+					if(y > offset && y < offset + rate * 15 - offsetOfFont){
 						y -= offset-offsetOfFont;
 						int i = x / rate;
 						int j = y / rate;
-						System.out.println("x = " + x + " y = " + y + " i = " + i + " j = " + j); 
+						System.out.println( "move:  i = " + i + " j = " + j + " | x = " + x + " y = " + y); 
 						if(!game.move(i, j)){
 							repaint();
 						} else {
 							repaint();
 							winFlag = true;
-							new WinMenu(game.getWinner(), game, bv);
+							System.out.println(game.getWinner() + " is winner, go to Win Menu");
+							new WinMenu("End Game", game.getWinner(), game, bv);
 						}
 					}
 				}

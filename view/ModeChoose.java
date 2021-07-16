@@ -6,8 +6,8 @@ import java.awt.event.*;
 public class ModeChoose extends JFrame {
 	private static final int size = 3;
 
-	public ModeChoose(){
-		super("Choose Mode");
+	public ModeChoose( String title){
+		super(title);
 		this.creating();
 	}
 
@@ -39,6 +39,7 @@ public class ModeChoose extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
+			System.out.println("Go to Main Menu...");
 			new MainMenu("Gomoku");
 		}
 	}
@@ -49,7 +50,8 @@ public class ModeChoose extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
-			new BoardView();
+			System.out.println("New Game with 2 players");
+			new BoardView("2007");
 		}
 	}
 }

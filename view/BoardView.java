@@ -1,22 +1,30 @@
 package view;
 import history.*;
+import saves.*;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class BoardView extends JFrame{
 	
 	private static final int panelButtonNum = 4;
 
-	BoardView(){
-		super("2007");
-		this.creating();
+	BoardView(String title){
+		super(title);
+		Gomoku game = new Gomoku();
+		this.creating(game);
+	}
+	BoardView(String title, Gomoku game){
+		super(title);
+		this.creating(game);
 	}
 
-	public void creating(){
+	public void creating(Gomoku game){
 	
-		BoardPanel bp = new BoardPanel(this);
+		BoardPanel bp = new BoardPanel(game, this);
         Container c = getContentPane();
         bp.setBounds(0, 50, 1000, 950);
 
@@ -30,6 +38,7 @@ public class BoardView extends JFrame{
 			c.add(panelButton[i], BorderLayout.NORTH);
 		}
 		panelButton[0].addActionListener(new UndoActListener(bp));
+		panelButton[1].addActionListener(new SaveActListener(bp));
 		panelButton[2].addActionListener(new HistoryActListener(bp));
 		panelButton[3].addActionListener(new QuitActListener(this));
 
@@ -48,6 +57,7 @@ public class BoardView extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
+			System.out.println("Go to Main Menu...");
 			new MainMenu("Gomoku");
 		}
 	}
@@ -56,7 +66,6 @@ public class BoardView extends JFrame{
 		HistoryActListener(BoardPanel e){ forTakeHist = e;}
 		@Override
 		public void actionPerformed(ActionEvent e){
-			System.out.println("History:");
 			System.out.println(this.forTakeHist.getGame().getHistory());
 		}
 	}
@@ -68,6 +77,21 @@ public class BoardView extends JFrame{
 			System.out.print("Undo: ");
 			System.out.println(this.forUndoMove.getGame().undo());
 			this.forUndoMove.repaint();
+		}
+	}
+	public static class SaveActListener implements ActionListener{
+		BoardPanel forSaveGame;
+		SaveActListener(BoardPanel e){ forSaveGame = e;}
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.println("Saving game...");
+			try{
+				GameSave.save(this.forSaveGame.getGame());
+				System.out.println("Done!");
+			} catch(IOException err){
+				System.out.println("Some problem with encodind or writing...");
+				System.out.println(err.getMessage());
+			}
 		}
 	}
 }

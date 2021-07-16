@@ -154,8 +154,8 @@ public class Gomoku implements Serializable{
 
 		return false;
 	}
-	public LinkedList<Element> getHistory(){
-		return history.getHistory();
+	public History getHistory(){
+		return history;
 	}
 	public String getWinner(){
 		if(this.player == true) return "Player X";

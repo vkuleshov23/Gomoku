@@ -9,8 +9,8 @@ public class WinMenu extends JFrame{
 	private static final int size = 2;
 	private Gomoku game;
 	private BoardView bv;
-	public WinMenu(String winner, Gomoku game, BoardView bv){
-		super("Game End");
+	public WinMenu(String title, String winner, Gomoku game, BoardView bv){
+		super(title);
 		this.creating(winner);
 		this.game = game;
 		this.bv = bv;
@@ -46,6 +46,7 @@ public class WinMenu extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
 			bv.dispose();
+			System.out.println("Go to Main Menu");
 			new MainMenu("Gomoku");
 		}
 	}
@@ -58,7 +59,8 @@ public class WinMenu extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
 			bv.dispose();
-			new BoardView();
+			System.out.println("New Game");
+			new BoardView("2007");
 		}
 	}
 }
