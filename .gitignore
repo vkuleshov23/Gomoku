@@ -2,6 +2,7 @@ ai/*.class
 history/*.class
 model/*.class
 saves/*.class
+saves/*.cer
 tests/*.class
 view/*.class
 *.class
