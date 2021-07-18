@@ -18,16 +18,16 @@ public class WinMenu extends JFrame{
 	private void creating(String winner){
 
 		JButton[] winMenuButton = new JButton[size];
-		String[] winMenuButtonsAndLabelName = new String[]{"Rematch", "Quit to Menu", "Winner: "};
+		String[] winMenuButtonsName = new String[]{"Rematch", "Quit to Menu"};
         Container c = getContentPane();
 
-        JLabel label= new JLabel(winMenuButtonsAndLabelName[2] + winner);
-        label.setBounds(100, 60, 320, 60);
+        JLabel label= new JLabel(winner);
+        label.setBounds(150, 60, 320, 60);
         c.add(label, BorderLayout.CENTER);
 
 
 		for(int i = 0, step = 120, y = 150; i < size; i++, y+=step){
-			winMenuButton[i] = new JButton(winMenuButtonsAndLabelName[i]);
+			winMenuButton[i] = new JButton(winMenuButtonsName[i]);
 			winMenuButton[i].setBounds(50, y, 320, 60-5);
 			c.add(winMenuButton[i], BorderLayout.CENTER);
 		}

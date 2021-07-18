@@ -5,8 +5,9 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Gomoku implements Serializable{
-	static final int size = 15;
-	static final int countForWin = 5;
+	private static final int size = 15;
+	private static final int countForWin = 5;
+	private boolean drawFlag;
 	private char[][] board;
 	private boolean player;
 	private History history;
@@ -20,6 +21,7 @@ public class Gomoku implements Serializable{
 			}
 		}
 		this.player = true;
+		this.drawFlag = false;
 	}
 	public Gomoku(char[][] board, boolean player, History history){
 		this.history = history;
@@ -29,13 +31,19 @@ public class Gomoku implements Serializable{
 				this.board[i][j] = board[i][j];
 			}
 		}
+		this.drawFlag = false;
 	}
 	public boolean move(int x, int y){
 		if(!this.checkMove(x, y))	
 			return false;
 		history.addMove(x, y, this.changeBoard(x, y, player));
+		
 		if(this.checkWin())
 			return true;
+		if(history.getSize() == size*size){
+			this.itIsDraw();
+			return true;
+		}
 		this.changePlayer();
 		return false;
 	}
@@ -157,9 +165,16 @@ public class Gomoku implements Serializable{
 	public History getHistory(){
 		return history;
 	}
+	public boolean checkDraw(){
+		return this.drawFlag;
+	}
+	public void itIsDraw(){
+		this.drawFlag = true;
+	}
 	public String getWinner(){
-		if(this.player == true) return "Player X";
-		else return "PLayer O";
+		if(this.checkDraw()) return "         Draw";
+		else if(this.player == true) return "Player X is winner";
+		else return "PLayer O is winner";
 	}
 	public int getSize(){ return this.size; }
 	public char getElement(int x, int y){

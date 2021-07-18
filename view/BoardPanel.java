@@ -61,7 +61,7 @@ public class BoardPanel extends JPanel {
 						} else {
 							repaint();
 							winFlag = true;
-							System.out.println(game.getWinner() + " is winner, open Win Menu");
+							System.out.println(game.getWinner());
 							new WinMenu("End Game", game.getWinner(), game, bv);
 						}
 					}

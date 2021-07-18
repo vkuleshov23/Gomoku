@@ -67,6 +67,7 @@ public class BoardView extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			System.out.println(this.forTakeHist.getGame().getHistory());
+			new HistoryMenu("History", forTakeHist);
 		}
 	}
 	public static class UndoActListener implements ActionListener{
