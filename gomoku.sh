@@ -11,6 +11,6 @@ compile="javac $files"
 launch="java view.MainMenu"
 
 $compile
-$launch
+$launch > ./logs/output.log
 
 cd -
