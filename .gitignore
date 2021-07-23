@@ -3,7 +3,7 @@ ai/*.class
 history/*.class
 model/*.class
 saves/*.class
-saves/*.cer
+saves/*.ser
 tests/*.class
 view/*.class
 *.class
