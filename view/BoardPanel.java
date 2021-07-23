@@ -85,6 +85,7 @@ public class BoardPanel extends JPanel {
 			for(int i = 0; i < game.getSize(); i++){
 				for(int j = 0; j < game.getSize(); j++){
 					g.drawString("" + changeColor(g, i, j), offset + rate/2 + i * rate, offset + rate/2 + j * rate);
+					// g.drawImage();
 				}
 			}
 		}
