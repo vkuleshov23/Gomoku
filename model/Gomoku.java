@@ -183,6 +183,18 @@ public class Gomoku implements Serializable{
 	public boolean getPlayer(){
 		return this.player;
 	}
+	public char getCurPlayerChar(){
+		if(this.player == true)
+			return 'X';
+		else 
+			return 'O';
+	}
+	public char getEmenyPlayerChar(){
+		if(this.player == true)
+			return 'O';
+		else 
+			return 'X';
+	}
 	private void changePlayer(){
 		this.player = !this.player;
 	}
