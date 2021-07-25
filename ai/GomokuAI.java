@@ -5,6 +5,7 @@ import model.*;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.io.Serializable;
 
@@ -29,16 +30,17 @@ public class GomokuAI implements Serializable{
 			if(posSum > maxSum)
 				maxSum = posSum;
 		}
+		ArrayList<ListElement> maxCostMoves = new ArrayList<ListElement>();
 		iter = this.posMove.iterator();
 		while(iter.hasNext()){
 			ListElement element = iter.next();
 			if(element.getSum() == maxSum){
-				addPossibleMoves(element.getCoordinates());
-				return element.getCoordinates();
+				maxCostMoves.add(element);
 			}
 		}
-
-		return new Coordinates(0, 0);
+		ListElement element = maxCostMoves.get((int)(Math.random() * maxCostMoves.size()));
+		addPossibleMoves(element.getCoordinates());
+		return element.getCoordinates();
 	}
 	private void addPossibleMoves(Coordinates lastMove){
 		for(int x = lastMove.getX()-1; x <= lastMove.getX()+1; x++){
