@@ -55,7 +55,7 @@ public class BoardPanel extends JPanel {
 			// GameMouseListener gml = new GameMouseListener(bv);
 			// this.addMouseListener(gml);
 		}
-		Gomoku getGame(){
+		public Gomoku getGame(){
 			return game;
 		}
 		public class GameMouseListener extends MouseAdapter {

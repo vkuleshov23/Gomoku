@@ -11,9 +11,9 @@ public class WinMenu extends JFrame{
 	private BoardView bv;
 	public WinMenu(String title, String winner, Gomoku game, BoardView bv){
 		super(title);
-		this.creating(winner);
 		this.game = game;
 		this.bv = bv;
+		this.creating(winner);
 	}
 	private void creating(String winner){
 
@@ -58,9 +58,10 @@ public class WinMenu extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
+			boolean ai = bv.getAIflag();
 			bv.dispose();
 			System.out.println("New Game");
-			new BoardView("2007");
+			new BoardView("2007", ai);
 		}
 	}
 }

@@ -29,7 +29,9 @@ public class BoardView extends JFrame{
 		this.aiFlag = aI;
 		this.creating(new Gomoku());
 	}
-
+	public boolean getAIflag(){
+		return aiFlag;
+	}
 	public void creating(Gomoku game){
 		
 		BoardPanel bp;
