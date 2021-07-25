@@ -18,6 +18,7 @@ public class ModeChoose extends JFrame {
 		mchButton[1] = new JButton("Two Players");
 		mchButton[2] = new JButton("Back");
 
+		mchButton[0].addActionListener(new SinglePlayerActListener(this));
 		mchButton[1].addActionListener(new TwoPlayerActListener(this));
 		mchButton[2].addActionListener(new BackActListener(this));
 
@@ -52,6 +53,16 @@ public class ModeChoose extends JFrame {
 			this.forClosing.dispose();
 			System.out.println("New Game with 2 players");
 			new BoardView("2007");
+		}
+	}
+	public static class SinglePlayerActListener implements ActionListener{
+		JFrame forClosing;
+		SinglePlayerActListener(JFrame e){ forClosing = e;}
+		@Override
+		public void actionPerformed(ActionEvent e){
+			this.forClosing.dispose();
+			System.out.println("New Game with 2 players");
+			new BoardView("2007", BoardView.ai);
 		}
 	}
 }

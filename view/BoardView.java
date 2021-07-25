@@ -11,20 +11,32 @@ import java.io.IOException;
 public class BoardView extends JFrame{
 	
 	private static final int panelButtonNum = 4;
+	public static final boolean ai = true;
+	private static boolean aiFlag = false;
 
 	BoardView(String title){
 		super(title);
-		Gomoku game = new Gomoku();
-		this.creating(game);
+		this.creating(new Gomoku());
 	}
 	BoardView(String title, Gomoku game){
 		super(title);
 		this.creating(game);
 	}
+	BoardView(String title, boolean ai){
+		super(title);
+		this.aiFlag = ai;
+		this.creating(new Gomoku());
+	}
 
 	public void creating(Gomoku game){
-	
-		BoardPanel bp = new BoardPanel(game, this);
+		
+		BoardPanel bp;
+		if(aiFlag = false){
+			bp = new BoardPanel(game, this);
+		} else {
+			bp = new BoardPanel(game, this, ai);
+		}
+        
         Container c = getContentPane();
         bp.setBounds(0, 50, 1000, 950);
 

@@ -33,6 +33,9 @@ public class Gomoku implements Serializable{
 		}
 		this.drawFlag = false;
 	}
+	public boolean move(Coordinates xy){
+		return this.move(xy.getX(), xy.getY());
+	}
 	public boolean move(int x, int y){
 		if(!this.checkMove(x, y))	
 			return false;

@@ -47,11 +47,11 @@ public class ListElement implements Serializable{
 	}
 	@Override
 	public int hashCode(){
-		return crd.hashCode() + sum+250;
+		return crd.hashCode();
 	}
 	@Override
 	public String toString(){
-		return ("" + x + ", " + y + ": " + sum '\n');
+		return (crd.toString());
 	}
 	@Override
 	public boolean equals(Object el){

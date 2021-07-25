@@ -1,6 +1,7 @@
 package view;
 import model.*;
 import history.*;
+import ai.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,18 +11,20 @@ import java.util.LinkedList;
 public class BoardPanel extends JPanel {
 		private Gomoku game;
 		private BoardView bv;
+		private GomokuAI artIntel;
 		private static final int rate = 53;
 		private static final int offset = 90;
 		private static final int offsetOfFont = 20;
 		private boolean winFlag = false;
+		private boolean aiFlag = false;
 
 		BoardPanel(Gomoku game, BoardView bv){
+			this(bv);
 			this.game = game;
-			this.bv = bv;
-			this.setBackground(Color.black);
-			GameMouseListener gml = new GameMouseListener(bv);
-			this.addMouseListener(gml);
-
+			// this.bv = bv;
+			// this.setBackground(Color.black);
+			// GameMouseListener gml = new GameMouseListener(bv);
+			// this.addMouseListener(gml);
 		}
 		BoardPanel(BoardView bv){
 			this.game = new Gomoku(); 
@@ -29,6 +32,26 @@ public class BoardPanel extends JPanel {
 			this.setBackground(Color.black);
 			GameMouseListener gml = new GameMouseListener(bv);
 			this.addMouseListener(gml);
+		}
+		BoardPanel(BoardView bv, boolean ai){
+			this(bv);
+			this.aiFlag = ai;
+			artIntel = new GomokuAI(game);
+			// this.game = new Gomoku(); 
+			// this.bv = bv;
+			// this.setBackground(Color.black);
+			// GameMouseListener gml = new GameMouseListener(bv);
+			// this.addMouseListener(gml);
+		}
+		BoardPanel(Gomoku game, BoardView bv, boolean ai){
+			this(game, bv);
+			this.aiFlag = ai;
+			artIntel = new GomokuAI(game);
+			// this.game = game;
+			// this.bv = bv;
+			// this.setBackground(Color.black);
+			// GameMouseListener gml = new GameMouseListener(bv);
+			// this.addMouseListener(gml);
 		}
 		Gomoku getGame(){
 			return game;
@@ -56,6 +79,7 @@ public class BoardPanel extends JPanel {
 						int i = x / rate;
 						int j = y / rate;
 						System.out.println( "move:  i = " + i + " j = " + j + " | x = " + x + " y = " + y); 
+						boolean player = game.getPlayer();
 						if(!game.move(i, j)){
 							repaint();
 						} else {
@@ -63,6 +87,18 @@ public class BoardPanel extends JPanel {
 							winFlag = true;
 							System.out.println(game.getWinner());
 							new WinMenu("End Game", game.getWinner(), game, bv);
+						}
+						if(aiFlag && player != game.getPlayer()){
+							Coordinates crd = artIntel.findMove();
+							System.out.println("AI move: " + crd);
+							if(!game.move(crd)){
+								repaint();
+							} else {
+								repaint();
+								winFlag = true;
+								System.out.println(game.getWinner());
+								new WinMenu("End Game", game.getWinner(), game, bv);
+							}
 						}
 					}
 				}

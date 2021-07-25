@@ -29,7 +29,7 @@ public class Coordinates implements Serializable{
 	}
 	@Override
 	public String toString(){
-		return ("" + x + ", " + y + '\n');
+		return ("" + x + ", " + y);
 	}
 	@Override
 	public boolean equals(Object el){
