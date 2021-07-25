@@ -20,6 +20,7 @@ public class BoardPanel extends JPanel {
 
 		BoardPanel(Gomoku game, BoardView bv){
 			this(bv);
+			aiFlag = false;
 			this.game = game;
 			// this.bv = bv;
 			// this.setBackground(Color.black);
@@ -30,6 +31,7 @@ public class BoardPanel extends JPanel {
 			this.game = new Gomoku(); 
 			this.bv = bv;
 			this.setBackground(Color.black);
+			aiFlag = false;
 			GameMouseListener gml = new GameMouseListener(bv);
 			this.addMouseListener(gml);
 		}
@@ -88,7 +90,7 @@ public class BoardPanel extends JPanel {
 							System.out.println(game.getWinner());
 							new WinMenu("End Game", game.getWinner(), game, bv);
 						}
-						if(aiFlag && player != game.getPlayer()){
+						if(aiFlag == true && player != game.getPlayer()){
 							Coordinates crd = artIntel.findMove();
 							System.out.println("AI move: " + crd);
 							if(!game.move(crd)){

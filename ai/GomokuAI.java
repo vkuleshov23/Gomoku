@@ -90,7 +90,7 @@ public class GomokuAI implements Serializable{
 			}
 			if(line.length() < 5)
 				continue;
-			System.out.println("LINE: " + line);
+			// System.out.println("LINE: " + line);
 			for(int strategy = 0; strategy < 2; strategy++){ // 0 - attack; 1 - defence
 				char stratChar = ' ';
 				if(strategy == 0)
@@ -119,7 +119,7 @@ public class GomokuAI implements Serializable{
 	}
 	private int compareWithPattern(String s, Pattern pattern, char stratChar){
 		
-		System.out.println("pattern length: " + pattern.getPattern().length() + " | line length: " + s.length());
+		// System.out.println("pattern length: " + pattern.getPattern().length() + " | line length: " + s.length());
 		if(pattern.getPattern().length() > s.length())
 			return 0;
 
@@ -127,7 +127,7 @@ public class GomokuAI implements Serializable{
 		int offset = getAstrixIndex(s);
 		s = changeAstrixToStrat(s, stratChar);
 		int patternStartPos = offset - pattern.getPattern().length()-1;
-		System.out.println("Line: " + s);
+		// System.out.println("Line: " + s);
 		for(;patternStartPos <= offset; patternStartPos++) {
 			if(patternStartPos < 0){
 				continue;

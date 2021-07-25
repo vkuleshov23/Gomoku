@@ -61,8 +61,8 @@ public class ModeChoose extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
-			System.out.println("New Game with 2 players");
-			new BoardView("2007", BoardView.ai);
+			System.out.println("New Single Player Game");
+			new BoardView("2007", true);
 		}
 	}
 }

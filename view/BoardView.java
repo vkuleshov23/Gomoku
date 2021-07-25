@@ -16,24 +16,26 @@ public class BoardView extends JFrame{
 
 	BoardView(String title){
 		super(title);
+		this.aiFlag = !ai;
 		this.creating(new Gomoku());
 	}
 	BoardView(String title, Gomoku game){
 		super(title);
+		this.aiFlag = !ai;
 		this.creating(game);
 	}
-	BoardView(String title, boolean ai){
+	BoardView(String title, boolean aI){
 		super(title);
-		this.aiFlag = ai;
+		this.aiFlag = aI;
 		this.creating(new Gomoku());
 	}
 
 	public void creating(Gomoku game){
 		
 		BoardPanel bp;
-		if(aiFlag = false){
+		if(!aiFlag){
 			bp = new BoardPanel(game, this);
-		} else {
+		} else{
 			bp = new BoardPanel(game, this, ai);
 		}
         
