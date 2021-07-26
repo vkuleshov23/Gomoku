@@ -15,6 +15,13 @@ public class GomokuAI implements Serializable{
 	public GomokuAI(Gomoku game){
 		this.posMove = new HashSet<ListElement>();
 		this.game = game;
+		this.loadHistory();
+	}
+	public void loadHistory(){
+		for(Element el : game.getHistory().getList()){
+			this.addPossibleMoves(new Coordinates(el.getX(), el.getY()));
+		}
+		this.checkPossibleMoves();
 	}
 	public Coordinates findMove(){
 		Coordinates lastMove = new Coordinates(game.getHistory().getLastX(), game.getHistory().getLastY());
@@ -26,7 +33,7 @@ public class GomokuAI implements Serializable{
 			ListElement element = iter.next();
 			int posSum = this.calculateMaxSum(element.getX(), element.getY());
 			element.setSum(posSum);
-			System.out.println(element + ", sum: " + element.getSum());
+			// System.out.println(element + ", sum: " + element.getSum());
 			if(posSum > maxSum)
 				maxSum = posSum;
 		}
