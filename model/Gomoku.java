@@ -39,7 +39,7 @@ public class Gomoku implements Serializable{
 				ListElement element = iter.next();
 				int posSum = this.calculateMaxSum(element.getX(), element.getY());
 				element.setSum(posSum);
-				// System.out.println(element + ", sum: " + element.getSum());
+				System.out.println(element + ", sum: " + element.getSum());
 				if(posSum > maxSum)
 					maxSum = posSum;
 			}

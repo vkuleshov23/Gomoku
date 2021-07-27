@@ -57,7 +57,7 @@ class LoadMenu extends JFrame implements ActionListener {
 			} catch(IOException err) {
 				System.out.println("File Not Found or no Saves...");
 				System.out.println(err.getMessage());
-				l.setText("File Not Found");
+				l.setText("File Not Found or Load Problems");
 				t.setText("");
 			} catch(ClassNotFoundException err){
 				System.out.println("Class Not Found...");
