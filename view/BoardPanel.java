@@ -38,7 +38,7 @@ public class BoardPanel extends JPanel {
 				this.bv = bv;
 			}
 			public void mouseClicked(MouseEvent e){
-				if(winFlag == true){
+				if(isEnd()){
 					return;
 				}
 
@@ -60,22 +60,25 @@ public class BoardPanel extends JPanel {
 									repaint();
 								} else {
 									repaint();
-									this.end();
+									end();
 								}
 							}
 						} else {
 							repaint();
-							this.end();
+							end();
 						}
 						
 					}
 				}
 			}
-			private void end(){
+		}
+		private boolean isEnd(){
+			return winFlag;
+		}
+		private void end(){
 			winFlag = true;
 			System.out.println(game.getWinner());
 			new WinMenu("End Game", game.getWinner(), game, bv);
-		}
 		}
 		// Font big = new Font("Yrsa", 1, 50);
 		// Font big = new Font("Utopia", 1, 50);
