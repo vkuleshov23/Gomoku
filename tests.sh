@@ -3,11 +3,11 @@
 cd /home/vadim/Labs/game/gomoku
 
 
-files="./model/*.java ./view/*.java ./ai/*.java ./history/*.java ./tests/*.java ./saves/*.java"
+files="./model/*.java ./history/*.java ./tests/*.java"
 
 compile="javac $files"
 
-launch="java tests.Test"
+launch="java tests.GomokuTests"
 
 $compile
 $launch

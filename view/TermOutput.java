@@ -23,7 +23,7 @@ public class TermOutput{
 			if(game.move(x-1, y-1) == true){
 				System.out.println(this);
 				System.out.println(game.getWinner() + " is winner");	
-				game.newGame();
+				game = new Gomoku(false);
 				System.out.println(this);
 			} else 
 				System.out.println(this);

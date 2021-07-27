@@ -212,7 +212,7 @@ public class Gomoku implements Serializable{
 	public boolean aiMove(){
 		if(aiFlag){
 			Coordinates crd = ai.findMove();
-			System.out.print("AI ");
+			// System.out.print("AI ");
 			return this.move(crd);
 		}
 		return false;
@@ -221,9 +221,9 @@ public class Gomoku implements Serializable{
 		return this.move(xy.getX(), xy.getY());
 	}
 	public boolean move(int x, int y){
-		System.out.println("move: " + new Coordinates(x, y));
-		if(!this.checkMove(x, y))	
+		if(!this.checkMove(x, y)){
 			return false;
+		}
 		history.addMove(x, y, this.changeBoard(x, y, player));
 		
 		if(this.checkWin())
@@ -272,12 +272,7 @@ public class Gomoku implements Serializable{
 		}
 	}
 	private boolean checkWin(){
-		char c;
-		
-		if(player == true)
-			c = 'X';
-		else
-			c = 'O';
+		char c = getCurPlayerChar();
 
 		int counter = 0;
 
@@ -390,13 +385,4 @@ public class Gomoku implements Serializable{
 	private void changePlayer(){
 		this.player = !this.player;
 	}
-	public void newGame(){
-		this.player = true;
-		for(int i = 0; i < size; i++){
-			for (int j = 0; j < size; j++) {
-				this.board[i][j] = ' ';
-			}
-		}
-	}
-
 }

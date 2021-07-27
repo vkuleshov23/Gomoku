@@ -49,7 +49,7 @@ public class ListElement implements Serializable{
 	}
 	@Override
 	public String toString(){
-		return (crd.toString());
+		return (crd.toString() + ", sum: " + sum);
 	}
 	@Override
 	public boolean equals(Object el){
