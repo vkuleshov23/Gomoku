@@ -35,6 +35,7 @@ class SaveMenu extends JFrame implements ActionListener {
 		this.add(p);
 		this.setSize(300, 100);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 

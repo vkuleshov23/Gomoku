@@ -31,6 +31,7 @@ public class ModeChoose extends JFrame {
 		this.setSize(600, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 
@@ -52,7 +53,7 @@ public class ModeChoose extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
 			System.out.println("New Game with 2 players");
-			new BoardView("2007");
+			new BoardView("Gomoku Game Board");
 		}
 	}
 	public static class SinglePlayerActListener implements ActionListener{
@@ -62,7 +63,7 @@ public class ModeChoose extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			this.forClosing.dispose();
 			System.out.println("New Single Player Game");
-			new BoardView("2007", true);
+			new BoardView("Gomoku Game Board", true);
 		}
 	}
 }

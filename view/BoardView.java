@@ -12,34 +12,23 @@ public class BoardView extends JFrame{
 	
 	private static final int panelButtonNum = 4;
 	public static final boolean ai = true;
-	private static boolean aiFlag = false;
 
 	BoardView(String title){
 		super(title);
-		this.aiFlag = !ai;
-		this.creating(new Gomoku());
+		this.creating(new Gomoku(!ai));
 	}
 	BoardView(String title, Gomoku game){
 		super(title);
-		this.aiFlag = !ai;
 		this.creating(game);
 	}
-	BoardView(String title, boolean aI){
+	BoardView(String title, boolean artIntel){
 		super(title);
-		this.aiFlag = aI;
-		this.creating(new Gomoku());
-	}
-	public boolean getAIflag(){
-		return aiFlag;
+		this.creating(new Gomoku(artIntel));
 	}
 	public void creating(Gomoku game){
 		
 		BoardPanel bp;
-		if(!aiFlag){
-			bp = new BoardPanel(game, this);
-		} else{
-			bp = new BoardPanel(game, this, ai);
-		}
+		bp = new BoardPanel(game, this);
         
         Container c = getContentPane();
         bp.setBounds(0, 50, 1000, 950);
@@ -64,6 +53,7 @@ public class BoardView extends JFrame{
 		this.setSize(1000, 1000);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 
@@ -91,9 +81,9 @@ public class BoardView extends JFrame{
 		UndoActListener(BoardPanel e){ forUndoMove = e;}
 		@Override
 		public void actionPerformed(ActionEvent e){
-			System.out.print("Undo: ");
-			System.out.println(this.forUndoMove.getGame().undo());
+			this.forUndoMove.getGame().undo();
 			this.forUndoMove.repaint();
+			System.out.print("Undo.");
 		}
 	}
 	public static class SaveActListener implements ActionListener{

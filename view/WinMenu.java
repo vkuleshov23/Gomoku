@@ -37,6 +37,7 @@ public class WinMenu extends JFrame{
 		this.setSize(420, 420);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 	public class QuitActListener implements ActionListener{
@@ -58,10 +59,10 @@ public class WinMenu extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			this.wm.dispose();
-			boolean ai = bv.getAIflag();
+			boolean ai = game.getAIflag();
 			bv.dispose();
 			System.out.println("New Game");
-			new BoardView("2007", ai);
+			new BoardView("Gomoku Game Board", ai);
 		}
 	}
 }

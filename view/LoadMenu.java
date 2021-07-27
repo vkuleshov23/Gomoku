@@ -35,6 +35,7 @@ class LoadMenu extends JFrame implements ActionListener {
 		this.add(p);
 		this.setSize(300, 100);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 
@@ -49,7 +50,7 @@ class LoadMenu extends JFrame implements ActionListener {
 			}
 			System.out.println("LoadGame game...");
 			try{
-				new BoardView("2007", LoadGame.load(filename));
+				new BoardView("Gomoku Game Board", LoadGame.load(filename));
 				this.dispose();
 				this.forClosing.dispose();
 				System.out.println("Done!");

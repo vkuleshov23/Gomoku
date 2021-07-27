@@ -1,5 +1,4 @@
 logs
-ai/*.class
 history/*.class
 model/*.class
 saves/*.class

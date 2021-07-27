@@ -36,6 +36,7 @@ public class HistoryMenu extends JFrame {
 		this.setContentPane(panel);
 		this.setSize(400, 400);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	} 
 }

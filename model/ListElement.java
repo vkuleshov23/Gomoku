@@ -1,6 +1,4 @@
-package ai;
-
-import model.*;
+package model;
 import java.io.Serializable;
 
 public class ListElement implements Serializable{

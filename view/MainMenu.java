@@ -32,6 +32,7 @@ public class MainMenu extends JFrame {
 		this.setSize(600, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// this.setIconImage(String);
+		this.setResizable(false);
 		this.setLayout(null);
 		this.setVisible(true);
 	}

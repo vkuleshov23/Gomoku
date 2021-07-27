@@ -1,8 +1,6 @@
-package ai;
+package model;
 
-import java.io.Serializable;
-
-public class Pattern implements Serializable{
+public class Pattern{
 	int sum;
 	String pattern;
 

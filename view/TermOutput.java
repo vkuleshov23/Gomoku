@@ -8,7 +8,7 @@ public class TermOutput{
 		private Scanner scan;
 		View(){
 			scan = new Scanner(System.in);
-			game = new Gomoku();
+			game = new Gomoku(false);
 		}
 		public void gameLoop(){
 			System.out.println(this);
