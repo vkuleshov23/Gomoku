@@ -39,7 +39,7 @@ public class Gomoku implements Serializable{
 				ListElement element = iter.next();
 				int posSum = this.calculateMaxSum(element.getX(), element.getY());
 				element.setSum(posSum);
-				System.out.println(element + ", sum: " + element.getSum());
+				// System.out.println(element + ", sum: " + element.getSum());
 				if(posSum > maxSum)
 					maxSum = posSum;
 			}
@@ -211,7 +211,9 @@ public class Gomoku implements Serializable{
 	}
 	public boolean aiMove(){
 		if(aiFlag){
-			return this.move(ai.findMove());
+			Coordinates crd = ai.findMove();
+			System.out.print("AI ");
+			return this.move(crd);
 		}
 		return false;
 	}
@@ -219,6 +221,7 @@ public class Gomoku implements Serializable{
 		return this.move(xy.getX(), xy.getY());
 	}
 	public boolean move(int x, int y){
+		System.out.println("move: " + new Coordinates(x, y));
 		if(!this.checkMove(x, y))	
 			return false;
 		history.addMove(x, y, this.changeBoard(x, y, player));

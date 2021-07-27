@@ -51,29 +51,31 @@ public class BoardPanel extends JPanel {
 						y -= offset-offsetOfFont;
 						int i = x / rate;
 						int j = y / rate;
-						System.out.println( "move:  i = " + i + " j = " + j + " | x = " + x + " y = " + y); 
+						System.out.println( "	Click coordinates:  x = " + x + " y = " + y); 
 						boolean player = game.getPlayer();
 						if(!game.move(i, j)){
 							repaint();
+							if(game.getAIflag()){
+								if(!game.aiMove()){
+									repaint();
+								} else {
+									repaint();
+									this.end();
+								}
+							}
 						} else {
 							repaint();
-							winFlag = true;
-							System.out.println(game.getWinner());
-							new WinMenu("End Game", game.getWinner(), game, bv);
+							this.end();
 						}
-						if(game.getAIflag()){
-							if(!game.aiMove()){
-								repaint();
-							} else {
-								repaint();
-								winFlag = true;
-								System.out.println(game.getWinner());
-								new WinMenu("End Game", game.getWinner(), game, bv);
-							}
-						}
+						
 					}
 				}
 			}
+			private void end(){
+			winFlag = true;
+			System.out.println(game.getWinner());
+			new WinMenu("End Game", game.getWinner(), game, bv);
+		}
 		}
 		// Font big = new Font("Yrsa", 1, 50);
 		// Font big = new Font("Utopia", 1, 50);
