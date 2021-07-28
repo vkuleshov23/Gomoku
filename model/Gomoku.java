@@ -30,7 +30,12 @@ public class Gomoku implements Serializable{
 			this.checkPossibleMoves();
 		}
 		public Coordinates findMove(){
-			Coordinates lastMove = new Coordinates(getHistory().getLastX(), getHistory().getLastY());
+			Coordinates lastMove;
+			if(getHistory().getSize() > 0){
+				lastMove = new Coordinates(getHistory().getLastX(), getHistory().getLastY());
+			} else {
+				lastMove = new Coordinates(8, 8);
+			}
 			this.checkPossibleMoves();
 			this.addPossibleMoves(lastMove);
 			Iterator<ListElement> iter = this.posMove.iterator();
@@ -209,31 +214,31 @@ public class Gomoku implements Serializable{
 	public boolean getAIflag(){
 		return this.aiFlag;
 	}
-	public boolean aiMove(){
+	public int aiMove(){
 		if(aiFlag){
 			Coordinates crd = ai.findMove();
 			// System.out.print("AI ");
 			return this.move(crd);
 		}
-		return false;
+		return 0;
 	}
-	public boolean move(Coordinates xy){
+	public int move(Coordinates xy){
 		return this.move(xy.getX(), xy.getY());
 	}
-	public boolean move(int x, int y){
+	public int move(int x, int y){
 		if(!this.checkMove(x, y)){
-			return false;
+			return -1;
 		}
 		history.addMove(x, y, this.changeBoard(x, y, player));
 		
 		if(this.checkWin())
-			return true;
+			return 1;
 		if(history.getSize() == size*size){
 			this.itIsDraw();
-			return true;
+			return 1;
 		}
 		this.changePlayer();
-		return false;
+		return 0;
 	}
 	private char changeBoard(int x, int y, boolean player){
 		if(player == true){

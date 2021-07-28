@@ -54,17 +54,19 @@ public class BoardPanel extends JPanel {
 					System.out.println( "	Click coordinates:  x = " + x + " y = " + y);
 					System.out.println("move: " + new Coordinates(i, j));
 					boolean player = game.getPlayer();
-					if(!game.move(i, j)){
+					int result = game.move(i, j);
+					if(result == 0){
 						repaint();
 						if(game.getAIflag()){
-							if(!game.aiMove()){
+							result = game.aiMove();
+							if(result == 0){
 								repaint();
-							} else {
+							} else if (result == 1){
 								repaint();
 								end();
 							}
 						}
-					} else {
+					} else if (result == 1){
 						repaint();
 						end();
 					}

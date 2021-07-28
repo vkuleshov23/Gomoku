@@ -20,7 +20,7 @@ public class TermOutput{
 			System.out.println("Input coordinates: ");
 			int x = scan.nextInt(); 
 			int y = scan.nextInt();
-			if(game.move(x-1, y-1) == true){
+			if(game.move(x-1, y-1) == 1){
 				System.out.println(this);
 				System.out.println(game.getWinner() + " is winner");	
 				game = new Gomoku(false);
