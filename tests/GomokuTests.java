@@ -78,7 +78,7 @@ public class GomokuTests{
 		game.move(2, 3);
 		game.move(3, 3);
 		game.move(3, 4);
-		check(game.move(4, 4));
+		check(game.move(4, 4) == 1);
 	}
 	private static void checkWinTest2(){
 		Gomoku game = new Gomoku(false);
@@ -90,7 +90,7 @@ public class GomokuTests{
 		game.move(3, 4);
 		game.move(11, 3);
 		game.move(4, 5);
-		check(game.move(10, 4));
+		check(game.move(10, 4) == 1);
 	}
 	private static void checkWinTest3(){
 		Gomoku game = new Gomoku(false);
@@ -102,7 +102,7 @@ public class GomokuTests{
 		game.move(3, 4);
 		game.move(0, 3);
 		game.move(4, 5);
-		check(game.move(0, 4));
+		check(game.move(0, 4) == 1);
 	}
 	private static void checkWinTest4(){
 		Gomoku game = new Gomoku(false);
@@ -114,7 +114,7 @@ public class GomokuTests{
 		game.move(3, 4);
 		game.move(3, 0);
 		game.move(4, 5);
-		check(game.move(4, 0));
+		check(game.move(4, 0) == 1);
 	}
 
 }
