@@ -13,8 +13,7 @@ public class LoadGame {
 	private static final String extension = ".ser";
 	public static final Gomoku load(String name) throws IOException, ClassNotFoundException{
 		String filename = way + name + extension;
-		FileInputStream gameSaves = new FileInputStream(filename);
-		ObjectInputStream ois = new ObjectInputStream(gameSaves);
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
 		Gomoku game = (Gomoku) ois.readObject();
 		ois.close();
 		return game;

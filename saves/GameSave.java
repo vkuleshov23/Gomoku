@@ -13,8 +13,7 @@ public class GameSave {
 	private static final String extension = ".ser";
 	public static final void save(Gomoku game, String name) throws IOException{
 		String filename = way + name + extension;
-		FileOutputStream gameSaves = new FileOutputStream(filename);
-		ObjectOutputStream oos = new ObjectOutputStream(gameSaves);
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
 		oos.writeObject(game);
 		oos.close();
 	}
