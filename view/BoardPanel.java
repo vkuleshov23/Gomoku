@@ -17,7 +17,7 @@ public class BoardPanel extends JPanel {
 
 	BoardPanel(Gomoku game, BoardView bv){
 		this.bv = bv;
-		this.setBackground(Color.black);
+		this.setBackground(new Color(16, 14, 14));
 		GameMouseListener gml = new GameMouseListener(bv);
 		this.addMouseListener(gml);
 		this.game = game;
@@ -85,18 +85,21 @@ public class BoardPanel extends JPanel {
 	}
 	// Font big = new Font("Yrsa", 1, 50);
 	// Font big = new Font("Utopia", 1, 50);
-	Font big = new Font("Ubuntu", 1, 50);
+	private static final Font big = new Font("Ubuntu", 1, 50);
 	// Font big = new Font("Nakula", 1, 50);
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.setColor(new Color(101, 45, 87));
 		g.setFont(big);
-		char c;
-		if(game.getPlayer() == true)
-			c = 'X';
-		else
-			c = 'O';
-		g.drawString("Player: " + c, 70, 70);
+		// g.setColor(new Color(101, 45, 87));
+		// g.setColor(new Color(156, 99, 157));
+		g.setColor(new Color(170, 169, 158));
+		// if(game.getPlayer() == true)
+		// 	c = 'X';
+		// else
+		// 	c = 'O';
+		char c = (game.getPlayer()) ? 'X' : 'O'; 
+		g.drawString("Player:", 60, 60);
+		g.drawString("" + changeColor(g, c), 240, 63);
 		for(int i = 0; i < game.getSize(); i++){
 			for(int j = 0; j < game.getSize(); j++){
 				g.drawString("" + changeColor(g, i, j), offset + rate/2 + i * rate, offset + rate/2 + j * rate);
@@ -104,17 +107,25 @@ public class BoardPanel extends JPanel {
 			}
 		}
 	}
-	private char changeColor(Graphics g ,int i,int j){
-		char c = game.getElement(i, j);
+	private char changeColor(Graphics g, char c){
 		if(c == 'X'){
-			g.setColor(new Color(101, 45, 87));
+			// g.setColor(new Color(101, 45, 87));
+			// g.setColor(new Color(0, 255, 26));
+			g.setColor(new Color(237, 14, 66));
 		} else if(c == 'O'){
-			g.setColor(new Color(114, 93, 102));
+			// g.setColor(new Color(114, 93, 102));
+			// g.setColor(new Color(255, 200, 0));
+			g.setColor(new Color(15, 209, 21));
 		} else if(c == ' '){
-			g.setColor(new Color(56, 34, 46));
-			// return '•';
-			return '¤';
+			// g.setColor(new Color(56, 34, 46));
+			// g.setColor(new Color(86, 29, 87));
+			g.setColor(new Color(120, 119, 108));
+			c = '¤';
 		}
 		return c;
+	}
+	private char changeColor(Graphics g ,int i,int j){
+		char c = game.getElement(i, j);
+		return changeColor(g, c);
 	}
 }

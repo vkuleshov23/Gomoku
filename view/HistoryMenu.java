@@ -17,7 +17,7 @@ public class HistoryMenu extends JFrame {
 		String hist = "";
 		int counter = 1;
 		for(Element el : bp.getGame().getHistory().getList()){
-			hist += ((counter++) + ": " + el.toString() + "\n");
+			hist += ((counter++) + ":\t" + el.toString() + "\n");
 		}
 		if(counter > 23){
 			counter = 23;
