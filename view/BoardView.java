@@ -10,8 +10,9 @@ import java.io.IOException;
 
 public class BoardView extends JFrame{
 	
-	private static final int panelButtonNum = 4;
+	private static final int panelButtonNum = 5;
 	public static final boolean ai = true;
+	BoardPanel bp;
 
 	BoardView(String title){
 		super(title);
@@ -27,7 +28,6 @@ public class BoardView extends JFrame{
 	}
 	public void creating(Gomoku game){
 		
-		BoardPanel bp;
 		bp = new BoardPanel(game, this);
         
         Container c = getContentPane();
@@ -35,17 +35,18 @@ public class BoardView extends JFrame{
 
 		JButton[] panelButton = new JButton[panelButtonNum];
 	
-		String[] panelButtonName = new String[]{"Undo", "Save", "History", "Quit to Menu"};
+		String[] panelButtonName = new String[]{"Hint", "Undo", "Save", "History", "Quit to Menu"};
 
-		for(int i = 0, step = 200, x = 100; i < panelButtonNum; i++, x += step){
+		for(int i = 0, step = 160, x = 100; i < panelButtonNum; i++, x += step){
 			panelButton[i] = new JButton(panelButtonName[i]);
 			panelButton[i].setBounds(x, 10, step-4, 35);
 			c.add(panelButton[i], BorderLayout.NORTH);
 		}
-		panelButton[0].addActionListener(new UndoActListener(bp));
-		panelButton[1].addActionListener(new SaveActListener(bp));
-		panelButton[2].addActionListener(new HistoryActListener(bp));
-		panelButton[3].addActionListener(new QuitActListener(this));
+		panelButton[0].addActionListener(new HintActListener(bp));
+		panelButton[1].addActionListener(new UndoActListener(bp));
+		panelButton[2].addActionListener(new SaveActListener(bp));
+		panelButton[3].addActionListener(new HistoryActListener(bp));
+		panelButton[4].addActionListener(new QuitActListener(this));
 
 		
         c.add(bp, BorderLayout.CENTER);
@@ -84,6 +85,16 @@ public class BoardView extends JFrame{
 			this.forUndoMove.getGame().undo();
 			this.forUndoMove.repaint();
 			System.out.print("Undo.");
+		}
+	}
+	public static class HintActListener implements ActionListener{
+		BoardPanel forUndoMove;
+		HintActListener(BoardPanel e){ forUndoMove = e;}
+		@Override
+		public void actionPerformed(ActionEvent e){
+			this.forUndoMove.autoMove();
+			this.forUndoMove.repaint();
+			System.out.print("Hint.");
 		}
 	}
 	public static class SaveActListener implements ActionListener{

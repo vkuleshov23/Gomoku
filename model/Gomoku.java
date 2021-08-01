@@ -195,9 +195,9 @@ public class Gomoku implements Serializable{
 			}
 		}
 		this.aiFlag = aiFlag;
-		if(this.aiFlag){
+		// if(this.aiFlag){
 			ai = new GomokuAI();
-		}
+		// }
 		this.player = true;
 		this.drawFlag = false;
 	}
@@ -215,12 +215,12 @@ public class Gomoku implements Serializable{
 		return this.aiFlag;
 	}
 	public int aiMove(){
-		if(aiFlag){
+		// if(aiFlag){
 			Coordinates crd = ai.findMove();
 			// System.out.print("AI ");
 			return this.move(crd);
-		}
-		return 0;
+		// }
+		// return 0;
 	}
 	public int move(Coordinates xy){
 		return this.move(xy.getX(), xy.getY());

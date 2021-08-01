@@ -32,6 +32,14 @@ public class BoardPanel extends JPanel {
 	public Gomoku getGame(){
 		return game;
 	}
+	public void autoMove(){
+		if(game.aiMove() == 1){
+			repaint();
+			end();
+		} else {
+			repaint();
+		}
+	}
 	public class GameMouseListener extends MouseAdapter {
 		BoardView bv;
 		GameMouseListener(BoardView bv){
