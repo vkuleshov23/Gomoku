@@ -38,6 +38,14 @@ public class BoardPanel extends JPanel {
 			end();
 		} else {
 			repaint();
+			if(game.getAIflag()){
+				if(game.aiMove() == 1){
+					repaint();
+					end();
+				} else {
+					repaint();
+				}
+			}
 		}
 	}
 	public class GameMouseListener extends MouseAdapter {
