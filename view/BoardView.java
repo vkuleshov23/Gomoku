@@ -27,7 +27,7 @@ public class BoardView extends JFrame{
 		this.creating(new Gomoku(artIntel));
 	}
 	public void creating(Gomoku game){
-		
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		bp = new BoardPanel(game, this);
         
         Container c = getContentPane();
@@ -40,6 +40,8 @@ public class BoardView extends JFrame{
 		for(int i = 0, step = 160, x = 100; i < panelButtonNum; i++, x += step){
 			panelButton[i] = new JButton(panelButtonName[i]);
 			panelButton[i].setBounds(x, 10, step-4, 35);
+			panelButton[i].setBackground(new Color(170, 169, 158));
+			panelButton[i].setForeground(new Color(0,0,0));
 			c.add(panelButton[i], BorderLayout.NORTH);
 		}
 		panelButton[0].addActionListener(new HintActListener(bp));

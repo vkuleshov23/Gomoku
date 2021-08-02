@@ -20,10 +20,15 @@ class SaveMenu extends JFrame implements ActionListener {
 		this.creating();
 	}
 	private void creating(){
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		t = new JTextField(16);
 		b = new JButton("Submit");
+		b.setForeground(new Color(0,0,0));
+		b.setBackground(new Color(170, 169, 158));
 		l = new JLabel("Enter filename without extension");
+		l.setForeground(new Color(227,227,227));
 		JPanel p = new JPanel();
+		p.setBackground(new Color(26, 24, 24));
 		
 		t.setText("");
 

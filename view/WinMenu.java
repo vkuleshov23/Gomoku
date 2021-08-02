@@ -17,18 +17,22 @@ public class WinMenu extends JFrame{
 	}
 	private void creating(String winner){
 
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		JButton[] winMenuButton = new JButton[size];
 		String[] winMenuButtonsName = new String[]{"Rematch", "Quit to Menu"};
         Container c = getContentPane();
 
         JLabel label= new JLabel(winner);
         label.setBounds(150, 60, 320, 60);
+		label.setForeground(new Color(227,227,227));
         c.add(label, BorderLayout.CENTER);
 
 
 		for(int i = 0, step = 120, y = 150; i < size; i++, y+=step){
 			winMenuButton[i] = new JButton(winMenuButtonsName[i]);
 			winMenuButton[i].setBounds(50, y, 320, 60-5);
+			winMenuButton[i].setForeground(new Color(0,0,0));
+			winMenuButton[i].setBackground(new Color(170, 169, 158));
 			c.add(winMenuButton[i], BorderLayout.CENTER);
 		}
 		winMenuButton[0].addActionListener(new RematchActListener(this, game));

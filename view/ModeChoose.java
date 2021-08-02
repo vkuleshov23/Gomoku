@@ -12,6 +12,7 @@ public class ModeChoose extends JFrame {
 	}
 
 	public void creating(){
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		JButton[] mchButton = new JButton[size];
 
 		mchButton[0] = new JButton("Single Player");
@@ -24,6 +25,8 @@ public class ModeChoose extends JFrame {
 
 		for(int i = 0, j = 100, step = 150; i < size; i++, j += step ){
 			mchButton[i].setBounds(100, j, 400, 50);
+			mchButton[i].setForeground(new Color(0,0,0));
+			mchButton[i].setBackground(new Color(170, 169, 158));
 		}
 		for(int i = 0; i < size; i++){
 			this.add(mchButton[i]);

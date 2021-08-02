@@ -11,6 +11,7 @@ public class MainMenu extends JFrame {
 
 	public MainMenu(String title){
 		super(title);
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		JButton[] menuButton = new JButton[3];
 
 		menuButton[0] = new JButton("New Game");
@@ -25,6 +26,8 @@ public class MainMenu extends JFrame {
 
 		for(int i = 0, j = 100, step = 150; i < size; i++, j += step ){
 			menuButton[i].setBounds(100, j, 400, 50);
+			menuButton[i].setBackground(new Color(170, 169, 158));
+			menuButton[i].setForeground(new Color(0,0,0));
 		}
 		for(int i = 0; i < size; i++){
 			this.add(menuButton[i]);

@@ -13,6 +13,7 @@ public class HistoryMenu extends JFrame {
  	
  	}
 	private void creating(BoardPanel bp){
+		this.getContentPane().setBackground( new Color(26,24,24) );
 		this.bp = bp;
 		String hist = "";
 		int counter = 1;
@@ -30,6 +31,7 @@ public class HistoryMenu extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(textArea,vsb,hsb);
 
 		JPanel panel = new JPanel();
+		panel.setBackground( new Color(26,24,24) );
 		panel.setLayout(new FlowLayout());
 		panel.add(scrollPane);
 
