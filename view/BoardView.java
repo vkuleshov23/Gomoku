@@ -84,7 +84,7 @@ public class BoardView extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			this.forUndoMove.getGame().undo();
 			this.forUndoMove.repaint();
-			System.out.print("Undo.");
+			System.out.println("Undo.");
 		}
 	}
 	public static class HintActListener implements ActionListener{
@@ -94,7 +94,7 @@ public class BoardView extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			this.forUndoMove.autoMove();
 			this.forUndoMove.repaint();
-			System.out.print("Hint.");
+			System.out.println("Hint.");
 		}
 	}
 	public static class SaveActListener implements ActionListener{
