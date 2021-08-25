@@ -33,6 +33,10 @@ public class BoardPanel extends JPanel {
 		return game;
 	}
 	public void autoMove(){
+		if(isEnd()){
+			return;
+		}
+
 		if(game.aiMove() == 1){
 			repaint();
 			end();
